@@ -25,53 +25,93 @@
                     <td>{{emp.Department}}</td>
                     <td>{{emp.Office}}</td>
                     <td style="width: 200px">
-                        <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a href="#" class="btn btn-success" data-target="#UpdateEmployee" data-toggle="modal" ng-click="updateEmployeesById(emp)"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="#" class="btn btn-danger" data-target="#DeleteEmployee"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
 
-    @*START MODAL - ADD EMPLOYEE*@
-    <div class="modal" id="AddEmployee" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="text-info">Adicionar Funcionário</h3>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" name="AddNewEmployeeForm">
-                        <div class="form-group">
-                            <input class="form-control" readonly="readonly" name="employeeId" type="hidden" placeholder="Employee ID" />
-                        </div>
+        @*START MODAL - ADD EMPLOYEE*@
+        <div class="modal" id="AddEmployee" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-info">Add Employee</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" name="AddNewEmployeeForm">
+                            <div class="form-group">
+                                <input class="form-control" readonly="readonly" name="EmployeeId" type="hidden" placeholder="Employee ID" />
+                            </div>
 
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="name" ng-model="name" placeholder="Employee name" />
-                        </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Name" ng-model="name" placeholder="Employee name" />
+                            </div>
 
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="name" ng-model="email" placeholder="E-mail" />
-                        </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Email" ng-model="email" placeholder="E-mail" />
+                            </div>
 
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="name" ng-model="department" placeholder="Employee department" />
-                        </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Department" ng-model="department" placeholder="Employee department" />
+                            </div>
 
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="name" ng-model="office" placeholder="Employee office" />
-                        </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Office" ng-model="office" placeholder="Employee office" />
+                            </div>
 
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnSalvar" data-dismiss="modal" ng-click="addEmployee()">Adicionar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearData()">Fechar</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" ng-click="addEmployee()">Add</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearData()">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
+        @*END MODAL - ADD EMPLOYEE*@
+
+        @*START MODAL - UPDATE EMPLOYEE*@
+        <div class="modal" id="UpdateEmployee" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-warning">Update Employee</h3>
+                    </div>
+                    <div class="modal-body" style="margin-left: 2%">
+                        <form class="form-horizontal" name="UpdateEmployeeForm">
+                            <div class="form-group">
+                                <input class="form-control" readonly="readonly" name="EmployeeId" type="hidden" placeholder="Employee ID" ng-model="UpdatedEmployeeId" />
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Name" ng-model="UpdatedEmployeeName" placeholder="Employee name" />
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Email" ng-model="UpdatedEmployeeEmail" placeholder="E-mail" />
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Department" ng-model="UpdatedEmployeeDepartment" placeholder="Employee department" />
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="Office" ng-model="UpdatedEmployeeOffice" placeholder="Employee office" />
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" ng-click="updateEmployee()">Update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearDataUpdated()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*END MODAL - UPDATE EMPLOYEE*@
     </div>
-    @*END MODAL - ADD EMPLOYEE*@
 
 </div>
 

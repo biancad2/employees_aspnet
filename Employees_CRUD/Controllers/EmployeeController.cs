@@ -13,7 +13,7 @@ namespace Employees_CRUD.Controllers
         [HttpGet]
         public JsonResult GetEmployee()
         {
-            using(var db = new EmployeesEntities())
+            using (var db = new EmployeesEntities())
             {
                 List<Employee> listEmployees = db.Employees.ToList();
 
@@ -26,9 +26,9 @@ namespace Employees_CRUD.Controllers
         [HttpPost]
         public JsonResult AddEmployee(Employee employee)
         {
-            if(employee != null)
+            if (employee != null)
             {
-                using(var db = new EmployeesEntities())
+                using (var db = new EmployeesEntities())
                 {
                     db.Employees.Add(employee);
                     db.SaveChanges();
@@ -39,5 +39,31 @@ namespace Employees_CRUD.Controllers
             return Json(new { success = false });
         }
         #endregion
+
+        #region Metodo para Adicionar funcionario - UPDATE
+        [HttpPost]
+        public JsonResult UpdateEmployee(Employee employee)
+        {
+            using (var db = new EmployeesEntities())
+            {
+                var updatedEmployee = db.Employees.Find(employee.EmployeeId);
+
+                if (updatedEmployee == null)
+                {
+                    return Json(new { success = false });
+                }
+                else
+                {
+                    updatedEmployee.Name = employee.Name;
+                    updatedEmployee.Department = employee.Department;
+                    updatedEmployee.Office = employee.Office;
+                    updatedEmployee.Email = employee.Email;
+
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+            }
+        }
+            #endregion
     }
 }

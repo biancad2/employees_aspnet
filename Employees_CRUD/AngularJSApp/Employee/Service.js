@@ -12,4 +12,13 @@
 
         return request;
     }
+
+    this.updateEmployee = function (employee) {
+        var request = $http({
+            method: 'post',
+            url: '/employee/UpdateEmployee',
+            data: employee
+        });
+        return request;
+    }
 });

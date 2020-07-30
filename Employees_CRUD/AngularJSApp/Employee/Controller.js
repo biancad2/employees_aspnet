@@ -46,4 +46,47 @@
         $scope.department = '';
         $scope.office = '';
     }
+
+    $scope.updateEmployeesById = function (employee) {
+        $scope.UpdatedEmployeeId = employee.EmployeeId;
+        $scope.UpdatedEmployeeName = employee.Name;
+        $scope.UpdatedEmployeeEmail = employee.Email;
+        $scope.UpdatedEmployeeDepartment = employee.Department;
+        $scope.UpdatedEmployeeOffice = employee.Office;
+    }
+
+    $scope.updateEmployee = function () {
+        var employee = {
+            EmployeeId: $scope.UpdatedEmployeeId,
+            Name: $scope.UpdatedEmployeeName,
+            Email: $scope.UpdatedEmployeeEmail,
+            Office: $scope.UpdatedEmployeeOffice,
+            Department: $scope.UpdatedEmployeeDepartment,
+        };
+
+        var updateInfos = employeeService.updateEmployee(employee);
+        updateInfos.then(function (d) {
+            if (d.data.success) {
+                loadEmployees();
+
+                alert("Updated successfully");
+                $scope.clearDataUpdated();
+            } else {
+                alert("Some error occurred, please try again.")
+            }
+        },
+            function () {
+                alert("Some error occurred trying to update the employee, try again!");
+            }
+
+        );
+    }
+
+    $scope.clearDataUpdated = function () {
+        $scope.UpdatedEmployeeId = '';
+        $scope.UpdatedEmployeeName = '';
+        $scope.UpdatedEmployeeEmail = '';
+        $scope.UpdatedEmployeeOffice = '';
+        $scope.UpdatedEmployeeDepartment = '';
+    }
 });
