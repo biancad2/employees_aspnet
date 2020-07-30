@@ -64,6 +64,28 @@ namespace Employees_CRUD.Controllers
                 }
             }
         }
-            #endregion
+        #endregion
+
+        #region Metodo para Adicionar funcionario - DELETE
+        [HttpPost]
+        public JsonResult DeleteEmployee(int id)
+        {
+            using (var db = new EmployeesEntities())
+            {
+                var employee = db.Employees.Find(id);
+
+                if (employee == null)
+                {
+                    return Json(new { success = false });
+                }
+                else
+                {
+                    db.Employees.Remove(employee);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+            }
+        }
+        #endregion
     }
 }

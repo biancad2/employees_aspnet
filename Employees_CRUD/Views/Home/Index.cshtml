@@ -26,7 +26,7 @@
                     <td>{{emp.Office}}</td>
                     <td style="width: 200px">
                         <a href="#" class="btn btn-success" data-target="#UpdateEmployee" data-toggle="modal" ng-click="updateEmployeesById(emp)"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-danger" data-target="#DeleteEmployee"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a href="#" class="btn btn-danger" data-target="#DeleteEmployee" data-toggle="modal" ng-click="deleteEmployeeById(emp)"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
             </tbody>
@@ -39,7 +39,7 @@
                     <div class="modal-header">
                         <h3 class="text-info">Add Employee</h3>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="margin-left: 2%">
                         <form class="form-horizontal" name="AddNewEmployeeForm">
                             <div class="form-group">
                                 <input class="form-control" readonly="readonly" name="EmployeeId" type="hidden" placeholder="Employee ID" />
@@ -106,6 +106,28 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" ng-click="updateEmployee()">Update</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearDataUpdated()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*END MODAL - UPDATE EMPLOYEE*@
+
+        @*START MODAL - UPDATE EMPLOYEE*@
+        <div class="modal" id="DeleteEmployee" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-warning">Are you sure that you want to delete {{UpdatedEmployeeName}}? </h3>
+                    </div>
+                    <div class="modal-body" style="margin-left: 2%">
+                        <div>
+                            <p>Id do Funcionário: {{UpdatedEmployeeId}}</p>
+                            <p>{{UpdatedEmployeeName}} - {{UpdatedEmployeeDepartment}} / {{UpdatedEmployeeOffice}}</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="btnSave" data-dismiss="modal" ng-click="deleteEmployee(UpdatedEmployeeId)">Delete</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearDataUpdated()">Cancel</button>
                     </div>
                 </div>
             </div>

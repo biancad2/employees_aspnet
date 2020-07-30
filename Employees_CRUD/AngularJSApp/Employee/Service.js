@@ -21,4 +21,8 @@
         });
         return request;
     }
+
+    this.deleteEmployee = function (UpdatedEmployeeId) {
+        return $http.post('/employee/DeleteEmployee/' + UpdatedEmployeeId);
+    }
 });

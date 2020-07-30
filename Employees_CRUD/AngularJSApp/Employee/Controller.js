@@ -89,4 +89,29 @@
         $scope.UpdatedEmployeeOffice = '';
         $scope.UpdatedEmployeeDepartment = '';
     }
+
+    $scope.deleteEmployeeById = function (employee) {
+        $scope.UpdatedEmployeeId = employee.EmployeeId;
+        $scope.UpdatedEmployeeName = employee.Name;
+        $scope.UpdatedEmployeeDepartment = employee.Department;
+        $scope.UpdatedEmployeeOffice = employee.Office;
+    }
+
+    $scope.deleteEmployee = function (UpdatedEmployeeId) {
+        var deleteInfos = employeeService.deleteEmployee($scope.UpdatedEmployeeId);
+
+        deleteInfos.then(function (d) {
+            if (d.data.success === true) {
+                loadEmployees();
+                alert("Employee deleted successfully!");
+
+            } else {
+                alert("Some error occurred, employee wasn't deleted!")
+            }
+        },
+            function () {
+                alert("Some error occurred trying to delete a new employee!")
+            }
+        );
+    }
 });
